@@ -196,3 +196,17 @@ const sendTokenResponse = (user, statusCode, res) => {
       }
     });
 };
+// @desc    Logout user
+// @route   GET /api/auth/logout
+// @access  Private/Public
+exports.logout = (req, res) => {
+  res.cookie('token', 'none', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true
+  });
+
+  res.status(200).json({
+    success: true,
+    data: {}
+  });
+};
